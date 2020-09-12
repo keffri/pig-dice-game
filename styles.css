@@ -53,3 +53,7 @@ body {
   height: 100%;
   background-color: #353535;
 }
+
+.active {
+  text-decoration: underline;
+}
