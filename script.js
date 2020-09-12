@@ -5,6 +5,8 @@ let diceNumber = document.querySelector(".roll-value");
 
 let p1Name = document.querySelector(".player-one-name");
 let p2Name = document.querySelector(".player-two-name");
+let p1Box = document.querySelector(".p1-box");
+let p2Box = document.querySelector(".p2-box");
 
 let p1TotalScore = 0;
 let playerOneTotal = document.querySelector(".player-one-total-score");
@@ -23,10 +25,14 @@ function setFirstPlayer() {
   activePlayer = random;
   if (activePlayer === 1) {
     p1Name.classList.add("active");
+    p1Box.style.opacity = 1;
     p2Name.classList.remove("active");
+    p2Box.style.opacity = 0;
   } else if (activePlayer === 2) {
     p2Name.classList.add("active");
+    p2Box.style.opacity = 1;
     p1Name.classList.remove("active");
+    p1Box.style.opacity = 0;
   }
 }
 
@@ -82,10 +88,14 @@ function randomDiceRoll() {
 function playerActive() {
   if (activePlayer === 1) {
     p1Name.classList.add("active");
+    p1Box.style.opacity = 1;
     p2Name.classList.remove("active");
+    p2Box.style.opacity = 0;
   } else if (activePlayer === 2) {
     p2Name.classList.add("active");
+    p2Box.style.opacity = 1;
     p1Name.classList.remove("active");
+    p1Box.style.opacity = 0;
   }
 }
 
