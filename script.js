@@ -23,8 +23,10 @@ function setFirstPlayer() {
   activePlayer = random;
   if (activePlayer === 1) {
     p1Name.classList.add("active");
+    p2Name.classList.remove("active");
   } else if (activePlayer === 2) {
     p2Name.classList.add("active");
+    p1Name.classList.remove("active");
   }
 }
 
