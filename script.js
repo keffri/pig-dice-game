@@ -18,7 +18,15 @@ let playerTwoTotal = document.querySelector(".player-two-total-score");
 let p2RollScore = 0;
 let playerTwoRolls = document.querySelector(".player-two-roll-score");
 
-let activePlayer = 1;
+function setFirstPlayer() {
+  let random = Math.floor(Math.random() * 2) + 1;
+  activePlayer = random;
+  if (activePlayer === 1) {
+    p1Name.classList.add("active");
+  } else if (activePlayer === 2) {
+    p2Name.classList.add("active");
+  }
+}
 
 function newGame() {
   p1RollScore = 0;
@@ -30,6 +38,7 @@ function newGame() {
   p2TotalScore = 0;
   playerTwoTotal.textContent = p2TotalScore;
   diceNumber.textContent = "0";
+  setFirstPlayer();
 }
 
 function holdScore() {
@@ -41,7 +50,6 @@ function holdScore() {
     playerOneRolls.textContent = p1RollScore;
   } else if (activePlayer === 2) {
     activePlayer = 1;
-
     p2TotalScore += p2RollScore;
     playerTwoTotal.textContent = p2TotalScore;
     p2RollScore = 0;
@@ -53,8 +61,6 @@ function randomDiceRoll() {
   let roll = Math.floor(Math.random() * 6) + 1;
   diceNumber.textContent = roll;
   if (activePlayer === 1 && roll === 1) {
-    p2Name.style.textDecoration = "underline";
-    p1Name.style.textDecoration = "none";
     activePlayer = 2;
     p1RollScore = 0;
     playerOneRolls.textContent = p1RollScore;
@@ -62,8 +68,6 @@ function randomDiceRoll() {
     p1RollScore += roll;
     playerOneRolls.textContent = p1RollScore;
   } else if (activePlayer === 2 && roll === 1) {
-    p1Name.style.textDecoration = "underline";
-    p2Name.style.textDecoration = "none";
     activePlayer = 1;
     p2RollScore = 0;
     playerTwoRolls.textContent = p2RollScore;
@@ -73,17 +77,33 @@ function randomDiceRoll() {
   }
 }
 
+function playerActive() {
+  if (activePlayer === 1) {
+    p1Name.classList.add("active");
+    p2Name.classList.remove("active");
+  } else if (activePlayer === 2) {
+    p2Name.classList.add("active");
+    p1Name.classList.remove("active");
+  }
+}
+
 function checkWinner() {
   if (p1TotalScore >= 100) {
     alert("Player 1 Wins!");
     newGame();
+    setFirstPlayer();
   } else if (p2TotalScore >= 100) {
     alert("Player 2 Wins!");
     newGame();
+    setFirstPlayer();
   }
 }
 
 newGameButton.addEventListener("click", newGame);
 holdButton.addEventListener("click", holdScore);
 holdButton.addEventListener("click", checkWinner);
+holdButton.addEventListener("click", playerActive);
 rollButton.addEventListener("click", randomDiceRoll);
+rollButton.addEventListener("click", playerActive);
+
+setFirstPlayer();
