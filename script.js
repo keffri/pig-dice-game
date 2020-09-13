@@ -101,11 +101,11 @@ function playerActive() {
 
 function checkWinner() {
   if (p1TotalScore >= 100) {
-    alert("Player 1 Wins!");
+    alert(`Player 1 wins with ${p1TotalScore} points!`);
     newGame();
     setFirstPlayer();
   } else if (p2TotalScore >= 100) {
-    alert("Player 2 Wins!");
+    alert(`Player 2 wins with ${p2TotalScore} points! `);
     newGame();
     setFirstPlayer();
   }
